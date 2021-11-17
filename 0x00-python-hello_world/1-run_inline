@@ -1,2 +1,2 @@
-#!/bin/shell
-python3 -c "$PYFILE"
+#!/bin/bash
+python3 -c "$PYCODE"
