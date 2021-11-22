@@ -2,6 +2,11 @@
 def print_matrix_integer(matrix=[[]]):
     if matrix is not None:
         for row in matrix:
-            for i in row:
-                print('{:d}'.format(i), end=' ')
-            print('\n')
+            j = 0
+            last_idx = len(row) - 1
+            while j <= last_idx:
+                if j == last_idx:
+                    print('{:d}'.format(row[j]))
+                else:
+                    print('{:d}'.format(row[j]), end=' ')
+                j += 1
