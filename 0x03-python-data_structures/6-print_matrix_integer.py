@@ -1,12 +1,9 @@
 #!/usr/bin/python3
 def print_matrix_integer(matrix=[[]]):
-    if matrix is not None:
-        for row in matrix:
-            j = 0
-            last_idx = len(row) - 1
-            while j <= last_idx:
-                if j == last_idx:
-                    print('{:d}'.format(row[j]))
-                else:
-                    print('{:d}'.format(row[j]), end=' ')
-                j += 1
+    for row in matrix:
+        for i in row:
+            if i is not row[len(row) - 1]:
+                print("{:d}".format(i), end=" ")
+            else:
+                print("{:d}".format(i), end="")
+        print()
