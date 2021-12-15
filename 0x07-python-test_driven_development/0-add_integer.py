@@ -1,5 +1,9 @@
 #!/usr/bin/python3
 """This module provides one funtion `add_integer`.
+
+Example:
+    >>> add_interger(2, 4)
+    6
 """
 
 
