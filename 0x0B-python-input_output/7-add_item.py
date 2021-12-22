@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """Adds all arguments to a list and save them to file as json.
 """
 
