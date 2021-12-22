@@ -9,7 +9,6 @@ def append_write(filename="", text=""):
     Args:
         filename (str): The file name
         text (str): The text to append.
-    
     Return:
         int: The number of chars appended
     '''
