@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 '''Module provides function `append_write`.
 '''
 
