@@ -2,12 +2,15 @@
 '''
 
 
-def append_write(filename='', text=''):
+def append_write(filename="", text=""):
     '''Appends text `text` add the end of file `filename`.
 
     Args:
         filename (str): The file name
         text (str): The text to append.
+    
+    Returns:
+        int: The number of chars appended
     '''
-    with open(filename, 'a', encoding='utf-8') as f:
+    with open(filename, mode='a', encoding='utf-8') as f:
         return f.write(text)
