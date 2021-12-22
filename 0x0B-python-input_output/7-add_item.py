@@ -13,6 +13,5 @@ def main(l=[]):
     content = existing_content + l
     save_to_json_file(content, filename)
 
-if __name__ == '__main__':
-    l = [sys.argv[i] for i in range(1, len(sys.argv))]
-    main(l)
+l = [sys.argv[i] for i in range(1, len(sys.argv))]
+main(l)
