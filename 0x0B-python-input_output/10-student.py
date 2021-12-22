@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-"""
-Module 11-student
+"""Module 11-student.
 
 Contains class Student
 that initializes public instance attributes first_name, last_name, and age,
@@ -26,10 +25,13 @@ class Student():
         self.last_name = last_name
         self.age = age
 
-    def to_json(self):
+    def to_json(self, attrs=None):
         """
         Returns dictionary description with simple data structure
         (list, dictionary, dictionary, string)
         for JSON serialization of an object
         """
+        if type(attrs) is list:
+            return {attr: self.__dict__[attr] for attr\
+             in attrs if attr in self.__dict__}
         return self.__dict__
