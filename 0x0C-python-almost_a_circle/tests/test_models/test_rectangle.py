@@ -32,7 +32,7 @@ class TestRectangle(unittest.TestCase):
         """Test that attributes are assigned to objects as expected."""
         r = Rectangle(4, 6, 1, 1, 10)
         r1 = Rectangle(4, 3, id=4)
-        r2 = Rectangle(4, 3)
+        r2 = Rectangle(4, 3, id=5)
 
         # r verifications
         self.assertEqual(r.width, 4)

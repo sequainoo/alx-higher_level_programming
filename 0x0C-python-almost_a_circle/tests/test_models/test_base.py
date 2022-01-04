@@ -2,6 +2,7 @@
 '''Contains tests for the base module.'''
 from models.base import Base
 from models.square import Square
+from models.rectangle import Rectangle
 import json
 import unittest
 import pep8
@@ -87,3 +88,64 @@ class TestFromJsonString(unittest.TestCase):
         strs3 = Base.from_json_string(s3)
         self.assertTrue(type(strs3) == list)
         self.assertTrue(strs3 == [])
+
+    # review
+    def test_create(self):
+        """Test transferring attribute dictionary to another instance"""
+        r = Rectangle(3, 5, 1, 2, 99)
+        rdic = r.to_dictionary()
+        r2 = Rectangle.create(**rdic)
+        self.assertEqual(str(r), '[Rectangle] (99) 1/2 - 3/5')
+        self.assertEqual(str(r2), '[Rectangle] (99) 1/2 - 3/5')
+        self.assertIsNot(r, r2)
+
+    """Test saving JSON string repr of dict to class specific file"""
+    # def test_save_to_file(self):
+    #     """Test save to file"""
+    #     r = Rectangle(10, 7, 2, 8, 99)
+    #     r2 = Rectangle(2, 4, 2, 2, 98)
+    #     Rectangle.save_to_file([r, r2])
+    #     with open("Rectangle.json", "r") as file:
+    #         self.assertEqual(
+    #             json.dumps([r.to_dictionary(), r2.to_dictionary()]),
+    #             file.read())
+
+    # def test_save_none_to_file(self):
+    #     """Test save None to file"""
+    #     Rectangle.save_to_file(None)
+    #     with open("Rectangle.json", "r") as file:
+    #         self.assertEqual('[]', file.read())
+
+    # def test_empty_none_to_file(self):
+    #     """Test save empty list to file"""
+    #     Rectangle.save_to_file([])
+    #     with open("Rectangle.json", "r") as file:
+    #         self.assertEqual('[]', file.read())
+
+    """Test loading list of instances from JSON string repr of dict in file"""
+    def test_load_from_file(self):
+        """Test load from file"""
+        r = Rectangle(10, 7, 2, 8, 99)
+        r2 = Rectangle(2, 4, 2, 2, 98)
+        Rectangle.save_to_file([r, r2])
+        recs = Rectangle.load_from_file()
+        self.assertEqual(len(recs), 2)
+        for k, v in enumerate(recs):
+            if k == 0:
+                self.assertEqual(str(v), '[Rectangle] (99) 2/8 - 10/7')
+            if k == 1:
+                self.assertEqual(str(v), '[Rectangle] (98) 2/2 - 2/4')
+
+    # def test_load_from_none_file(self):
+    #     """Test load from None file"""
+    #     Rectangle.save_to_file(None)
+    #     recs = Rectangle.load_from_file()
+    #     self.assertEqual(type(recs), list)
+    #     self.assertEqual(len(recs), 0)
+
+    # def test_load_from_empty_file(self):
+    #     """Test load from empty file"""
+    #     Rectangle.save_to_file([])
+    #     recs = Rectangle.load_from_file()
+    #     self.assertEqual(type(recs), list)
+    #     self.assertEqual(len(recs), 0)
