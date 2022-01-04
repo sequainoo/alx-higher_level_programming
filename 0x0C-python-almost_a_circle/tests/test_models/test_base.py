@@ -57,3 +57,33 @@ class TestBase(unittest.TestCase):
         with open('Square.json', mode='r', encoding='utf-8') as jf:
             output = jf.read()
             self.assertEqual(output, expected)
+
+
+class TestFromJsonString(unittest.TestCase):
+    def test_from_json_string(self):
+        """Test JSON string translates into Python dict"""
+        s0 = '[{"id": 1, "width": 2, "height": 3, "x": 4, "y": 5},\
+               {"id": 6, "width": 7, "height": 8, "x": 9, "y": 10}]'
+        strs0 = Base.from_json_string(s0)
+        self.assertTrue(type(s0) == str)
+        self.assertTrue(type(strs0) == list)
+        self.assertTrue(type(strs0[0]) == dict)
+        self.assertTrue(strs0,
+                        [{"id": 1, "width": 2, "height": 3, "x": 4, "y": 5},
+                         {"id": 6, "width": 7, "height": 8, "x": 9, "y": 10}])
+        self.assertTrue(strs0[0],
+                        {"id": 1, "width": 2, "height": 3, "x": 4, "y": 5})
+
+    def test_from_none_json_string(self):
+        """Test no JSON string translates into empty Python dict"""
+        s2 = None
+        strs2 = Base.from_json_string(s2)
+        self.assertTrue(type(strs2) == list)
+        self.assertTrue(strs2 == [])
+
+    def test_from_empty_json_string(self):
+        """Test no JSON string translates into empty Python dict"""
+        s3 = ""
+        strs3 = Base.from_json_string(s3)
+        self.assertTrue(type(strs3) == list)
+        self.assertTrue(strs3 == [])

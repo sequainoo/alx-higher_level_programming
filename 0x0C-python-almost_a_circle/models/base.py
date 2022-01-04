@@ -40,3 +40,10 @@ class Base(object):
             filename = '{}.json'.format(cls.__name__)
             with open(filename, 'w', encoding='utf-8') as f:
                 f.write(s)
+
+    @staticmethod
+    def from_json_string(json_string):
+        """Returns Python obj of JSON string representation"""
+        if json_string is None or len(json_string) == 0:
+            json_string = "[]"
+        return json.loads(json_string)
