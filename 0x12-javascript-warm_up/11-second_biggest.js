@@ -8,7 +8,7 @@ if (isNaN(biggest) || isNaN(biggest2)) {
   console.log(0);
 } else {
   if (biggest < biggest2) {
-    let tmp = biggest;
+    const tmp = biggest;
     biggest = biggest2;
     biggest2 = tmp;
   }
