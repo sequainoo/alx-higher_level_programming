@@ -1,6 +1,6 @@
 #!/usr/bin/node
 
-function second_biggest () {
+function secondBiggest () {
   let biggest = parseInt(process.argv[2]);
   let biggest2 = parseInt(process.argv[3]);
   const arr = [];
@@ -10,7 +10,7 @@ function second_biggest () {
     return;
   }
   if (biggest < biggest2) {
-    let tmp = biggest;
+    const tmp = biggest;
     biggest = biggest2;
     biggest2 = tmp;
   }
