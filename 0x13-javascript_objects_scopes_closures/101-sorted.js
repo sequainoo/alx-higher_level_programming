@@ -2,8 +2,8 @@
 
 const dict = require('./101-data').dict;
 
-let newDic = {};
-for (let key in dict) {
+const newDic = {};
+for (const key in dict) {
   if (newDic[dict[key]] === undefined) {
     newDic[dict[key]] = [];
   }
