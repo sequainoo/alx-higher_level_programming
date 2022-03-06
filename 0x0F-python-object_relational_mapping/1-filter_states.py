@@ -19,7 +19,7 @@ if __name__ == '__main__':
     cursor = conn.cursor()
     num_rows = cursor.execute(
         'SELECT * FROM states\
-        WHERE states.name LIKE "N%" ORDER BY states.id')
+        WHERE substr(states.name,1,1) = "N" ORDER BY states.id')
     rows = cursor.fetchall()
     for row in rows:
         print(row)
