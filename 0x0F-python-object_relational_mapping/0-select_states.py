@@ -7,7 +7,11 @@ mysql_username = sys.argv[1]
 mysql_passwd = sys.argv[2]
 mysql_db = sys.argv[3]
 
-conn = MySQLdb.connect(host='localhost', user=mysql_username, passwd=mysql_passwd, db=mysql_db)
+conn = MySQLdb.connect(
+    host='localhost',
+    user=mysql_username,
+    passwd=mysql_passwd,
+    db=mysql_db)
 cursor = conn.cursor()
 
 if __name__ == '__main__':
