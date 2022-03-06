@@ -1,8 +1,17 @@
 #!/usr/bin/python3
-'''Script that lists all states with name starting N.'''
+'''Script that lists all states with states.name matching the arg.
+
+MySQL case insensitivity reasons for constructs such as
+`SELECT *
+ FROM states
+ WHERE states.name LIKE 'Arizona'`
+
+matches states with names being arizona and Arizona.
+So it makes sense to filter the query to return only those that match the
+exact case.
+'''
 
 from sqlite3 import connect
-from unicodedata import name
 import MySQLdb
 import sys
 
