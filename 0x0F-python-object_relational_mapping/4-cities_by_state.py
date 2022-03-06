@@ -10,6 +10,10 @@ if __name__ == '__main__':
                            port=3306,
                            db=argv[3])
     cursor = conn.cursor()
-    cursor.execute('SELECT * FROM cities ORDER BY id')
+    sql = 'SELECT cities.id, cities.name, states.name\
+           FROM cities LEFT JOIN states\
+               ON cities.state_id = states.id\
+               ORDER BY id'
+    cursor.execute(sql)
     for row in cursor.fetchall():
         print(row)
