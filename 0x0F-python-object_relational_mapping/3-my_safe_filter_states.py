@@ -1,14 +1,9 @@
 #!/usr/bin/python3
 '''Script that lists all states with states.name matching the arg.
 
-MySQL case insensitivity reasons for constructs such as
-`SELECT *
- FROM states
- WHERE states.name LIKE 'Arizona'`
+https://bobby-tables.com/python
 
-matches states with names being arizona and Arizona.
-So it makes sense to filter the query to return only those that match the
-exact case.
+SQLi guarded db script
 '''
 
 from sqlite3 import connect
@@ -30,8 +25,8 @@ if __name__ == '__main__':
     cursor = conn.cursor()
     cursor.execute('SELECT *\
                     FROM states\
-                    WHERE states.name LIKE "{:s}"\
-                    ORDER BY states.id'.format(state_name))
+                    WHERE states.name LIKE %s\
+                    ORDER BY states.id', (state_name,))
     for row in cursor.fetchall():
         if row[1] == state_name:
             print(row)
