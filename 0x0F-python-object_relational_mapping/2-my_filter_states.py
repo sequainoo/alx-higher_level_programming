@@ -21,7 +21,7 @@ if __name__ == '__main__':
     cursor = conn.cursor()
     num_rows = cursor.execute(
         'SELECT * FROM states\
-        WHERE states.name = "{}"\
+        WHERE states.name LIKE "{}"\
             ORDER BY states.id'.format(state_name))
     rows = cursor.fetchall()
     for row in rows:
