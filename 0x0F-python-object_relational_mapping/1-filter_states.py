@@ -19,7 +19,7 @@ if __name__ == '__main__':
     cursor = conn.cursor()
     num_rows = cursor.execute(
         'SELECT * FROM states\
-        WHERE regexp_like(states.name, "^N") ORDER BY states.id')
+        WHERE ASCII(substr(states.name,1,1)) = ASCII("N") ORDER BY states.id')
     rows = cursor.fetchall()
     for row in rows:
         print(row)
