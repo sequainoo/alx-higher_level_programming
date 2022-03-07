@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 '''State definition'''
 
 from sqlalchemy.ext.declarative import declarative_base
