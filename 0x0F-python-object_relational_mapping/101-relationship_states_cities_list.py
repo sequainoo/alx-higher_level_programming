@@ -16,12 +16,11 @@ if __name__ == "__main__":
     engine = create_engine(conn_str, pool_pre_ping=True)
     Session = sessionmaker(bind=engine)
     session = Session()
-    Base.metadata.create_all(engine)
+    # Base.metadata.create_all(engine)
 
     for state in session.query(State).\
-            options(joinedload(State.cities)).\
             order_by(State.id).all():
-        print('{:d}: {:s}'.format(state.id, state.name))
+        print('{}: {}'.format(state.id, state.name))
         for city in state.cities:
-            print('    {:d}: {:s}'.format(city.id, city.name))
+            print("    {}: {}".format(city.id, city.name))
     session.close()
