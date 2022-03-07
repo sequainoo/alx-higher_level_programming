@@ -10,11 +10,11 @@ import sys
 if __name__ == '__main__':
     conn_str = 'mysql+mysqldb://{:s}:{:s}@localhost:3306/{:s}'\
         .format(sys.argv[1], sys.argv[2], sys.argv[3])
-    engine = create_engine(conn_str)
+    engine = create_engine(conn_str,  pool_pre_ping=True)
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    states = session.query(State).order_by(State.id).all()
-    for state in states:
+    for state in session.query(State).order_by(State.id).all():
         print('{:d}: {:s}'.format(state.id, state.name))
+
     session.close()
