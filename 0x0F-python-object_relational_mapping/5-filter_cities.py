@@ -25,7 +25,8 @@ if __name__ == '__main__':
     i = 0
     for row in rows:
         if i + 1 == length:
-            print(row[0])
+            print(row[0], end='')
         else:
             print(row[0], end=', ')
         i += 1
+    print()
