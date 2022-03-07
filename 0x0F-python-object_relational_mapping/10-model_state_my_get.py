@@ -1,21 +1,29 @@
 #!/usr/bin/python3
-'''script that prints the State object with the name passed as argument'''
+"""
+return state id given state name; SQL injection free
+parameters given to script: username, password, database, state name to match
+"""
 
-import sys
+from sys import argv
+from model_state import Base, State
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from model_state import Base, State
-from sqlalchemy.orm.exc import NoResultFound, MultipleResultsFound
 
-if __name__ == '__main__':
-    conn_str = 'mysql+mysqldb://{:s}:{:s}@localhost:3306/{:s}'\
-        .format(sys.argv[1], sys.argv[2], sys.argv[3])
-    engine = create_engine(conn_str,  pool_pre_ping=True)
+
+if __name__ == "__main__":
+
+    # make engine for database
+    user = argv[1]
+    passwd = argv[2]
+    db = argv[3]
+    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.
+                           format(user, passwd, db), pool_pre_ping=True)
+    Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)
     session = Session()
 
     # query python instance in database state id given state name
-    state = session.query(State).filter_by(name=sys.argv[4]).first()
+    state = session.query(State).filter_by(name=argv[4]).first()
     if state:
         print("{:d}".format(state.id))
     else:
