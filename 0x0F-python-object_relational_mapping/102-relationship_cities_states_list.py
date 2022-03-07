@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-'''Script creates a State with an associated city using relationship'''
+'''Lists all city objects with each related state with just one query.'''
 
 import sys
 from sqlalchemy import create_engine
@@ -18,9 +18,9 @@ if __name__ == "__main__":
     session = Session()
     # Base.metadata.create_all(engine)
 
-    for state in session.query(State).\
-            order_by(State.id).all():
-        print('{}: {}'.format(state.id, state.name))
-        for city in state.cities:
-            print("    {}: {}".format(city.id, city.name))
+    for city in session.query(City).\
+            options(joinedload(City.state)).\
+            order_by(City.id).all():
+        print('{}: {} -> {}'.format(city.id, city.name, city.state.name))
+
     session.close()
