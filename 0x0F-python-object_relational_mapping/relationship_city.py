@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 '''City definition'''
 
-from model_state import Base, State
+from relationship_state import Base, State
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String, ForeignKey
 
