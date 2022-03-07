@@ -14,11 +14,10 @@ if __name__ == '__main__':
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    try:
-        state = session.query(State).filter(State.name == sys.argv[4])\
-            .one()
-        print(state.id)
-    except (NoResultFound, MultipleResultsFound):
-        print('Not Found')
-
+    # query python instance in database state id given state name
+    state = session.query(State).filter_by(name=sys.argv[4]).first()
+    if state:
+        print("{:d}".format(state.id))
+    else:
+        print("Not found")
     session.close()
