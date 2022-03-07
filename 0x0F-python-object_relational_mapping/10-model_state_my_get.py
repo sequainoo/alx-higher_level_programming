@@ -5,6 +5,7 @@ import sys
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from model_state import Base, State
+from sqlalchemy.orm.exc import NoResultFound, MultipleResultsFound
 
 if __name__ == '__main__':
     conn_str = 'mysql+mysqldb://{:s}:{:s}@localhost:3306/{:s}'\
@@ -13,11 +14,11 @@ if __name__ == '__main__':
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    state = session.query(State).filter(State.name == sys.argv[4])\
-        .scalar()
-    if state:
+    try:
+        state = session.query(State).filter(State.name == sys.argv[4])\
+            .one()
         print(state.id)
-    else:
+    except (NoResultFound, MultipleResultsFound):
         print('Not Found')
 
     session.close()
