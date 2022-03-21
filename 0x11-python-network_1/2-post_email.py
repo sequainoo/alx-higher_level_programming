@@ -15,7 +15,7 @@ if __name__ == '__main__':
     try:
         with request.urlopen(req) as response:
             content = response.read()
-            print('Your email is: '.format(content.decode('utf-8')))
+            print(content.decode('utf-8'))
     except error.HTTPError as e:
         pass
     except error.URLError as e:
