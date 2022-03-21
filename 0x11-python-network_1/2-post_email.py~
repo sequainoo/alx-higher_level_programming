@@ -17,6 +17,6 @@ if __name__ == '__main__':
             content = response.read()
             print('Your email is: '.format(content.decode('utf-8')))
     except error.HTTPError as e:
-        
+        print(e)
     except error.URLError as e:
-        pass
+        print('urlerro')
