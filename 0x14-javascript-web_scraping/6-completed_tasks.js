@@ -1,25 +1,25 @@
 #!/usr/bin/node
 const request = require('request');
-const id_map = {};
+const idMap = {};
 const url = process.argv[2];
 
-let todos = []
+let todos = [];
 
 request(url, (err, response, body) => {
   if (err) {
-    console.log(error);
+    console.log(err);
   } else {
     todos = JSON.parse(body);
-    for (let todo of todos) {
+    for (const todo of todos) {
       if (todo.completed) {
-        let id = parseInt(todo.userId)
-        if (!id_map[id]) {
-	  id_map[id] = 1;
-	} else {
-	  id_map[id] += 1;
-	}
+        const id = parseInt(todo.userId);
+        if (!idMap[id]) {
+          idMap[id] = 1;
+        } else {
+          idMap[id] += 1;
+        }
       }
     }
-    console.log(id_map);
+    console.log(idMap);
   }
 });
